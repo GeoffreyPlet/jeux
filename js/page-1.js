@@ -23,22 +23,24 @@ function createDivContent(name, content){
 }
 /* FIN fonction creation de div avec content */
 
+var livre = createDivClass('div', 'container border mt-5 livre');
+livre.style.height = '800px';
+document.body.appendChild(livre);
 
 /* DEBUT 1er Page */
     function pageOne(){
 
-        document.body.innerHTML = '';
+       
 
 
         var divUtil
-        var livre = createDivClass('div', 'container border mt-5');
         var livreRow = createDivClass('div', 'row h-100');
         var page = [createDivClass('div', 'col-6 h-100 d-flex flex-column justify-content-center text-center'), createDivClass('div', 'col-6 h-100 border-left')];
 
         /* DEBUT init LIVRE */
-            livre.style.height = '800px';
+     
 
-            document.body.appendChild(livre);
+
             document.getElementsByClassName('container')[0].appendChild(livreRow);
             document.getElementsByClassName('row')[0].appendChild(page[0]);
             document.getElementsByClassName('row')[0].appendChild(page[1]);
@@ -110,7 +112,9 @@ function createDivContent(name, content){
                             document.getElementsByClassName('col-3')[0].getElementsByTagName('span')[0].style.display = 'none';
                             
                             if(parseInt(document.getElementsByClassName('col-3')[0].textContent) === 10){
-                                document.getElementsByClassName('col-3')[0].textContent = 0;
+                                document.getElementsByClassName('col-3')[0].innerHTML = '';
+                                document.getElementsByClassName('col-3')[0].innerHTML = '<span>0</span>';
+                                document.getElementsByClassName('col-3')[0].getElementsByTagName('span')[0].style.display = 'none';
                             }
 
                         });
@@ -123,7 +127,9 @@ function createDivContent(name, content){
                         document.getElementsByClassName('col-3')[1].innerHTML = '<span>'+cpt+'</span>';
                         document.getElementsByClassName('col-3')[1].getElementsByTagName('span')[0].style.display = 'none';
                         if(parseInt(document.getElementsByClassName('col-3')[1].textContent) === 10){
-                            document.getElementsByClassName('col-3')[1].textContent = 0;
+                            document.getElementsByClassName('col-3')[1].innerHTML = '';
+                            document.getElementsByClassName('col-3')[1].innerHTML = '<span>0</span>';
+                            document.getElementsByClassName('col-3')[1].getElementsByTagName('span')[0].style.display = 'none';
                         }
 
                     });
@@ -136,7 +142,9 @@ function createDivContent(name, content){
                         document.getElementsByClassName('col-3')[2].innerHTML = '<span>'+cpt+'</span>';
                         document.getElementsByClassName('col-3')[2].getElementsByTagName('span')[0].style.display = 'none';
                         if(parseInt(document.getElementsByClassName('col-3')[2].textContent) === 10){
-                            document.getElementsByClassName('col-3')[2].textContent = 0;
+                            document.getElementsByClassName('col-3')[2].innerHTML = '';
+                            document.getElementsByClassName('col-3')[2].innerHTML = '<span>0</span>';
+                            document.getElementsByClassName('col-3')[2].getElementsByTagName('span')[0].style.display = 'none';
                         }
 
                     });
@@ -149,7 +157,9 @@ function createDivContent(name, content){
                         document.getElementsByClassName('col-3')[3].innerHTML = '<span>'+cpt+'</span>';
                         document.getElementsByClassName('col-3')[3].getElementsByTagName('span')[0].style.display = 'none';
                         if(parseInt(document.getElementsByClassName('col-3')[3].textContent) === 10){
-                            document.getElementsByClassName('col-3')[3].textContent = 0;
+                            document.getElementsByClassName('col-3')[3].innerHTML = '';
+                            document.getElementsByClassName('col-3')[3].innerHTML = '<span>0</span>';
+                            document.getElementsByClassName('col-3')[3].getElementsByTagName('span')[0].style.display = 'none';
                         }
 
                     });
@@ -191,34 +201,87 @@ function createDivContent(name, content){
 /* DEBUT 2eme PAGE */
     function pageTwo(){
         
-        document.body.innerHTML = '';
+        document.getElementsByClassName('livre')[0].innerHTML = '';
+        
         var divUtil
-        var livre = createDivClass('div', 'container border mt-5');
         var livreRow = createDivClass('div', 'row h-100');
-        var page = [createDivClass('div', 'col-6 h-100 d-flex flex-column justify-content-center text-center'), createDivClass('div', 'col-6 h-100 border-left')];
+        var page = [createDivClass('div', 'col-6 h-100'), createDivClass('div', 'col-6 h-100 border-left')];
 
         /* DEBUT init LIVRE */
             livre.style.height = '800px';
 
-            document.body.appendChild(livre);
-            document.getElementsByClassName('container')[0].appendChild(livreRow);
-            document.getElementsByClassName('row')[0].appendChild(page[0]);
-            document.getElementsByClassName('row')[0].appendChild(page[1]);
+            $('.container').append(livreRow);
+            $('.row').append(page);
+            
         /* FIN init LIVRE */
 
         /* DEBUT init PAGE LEFT */
-            var pageLeft = document.getElementsByClassName('col-6')[0];
+            var pageLeft = $('.col-6').eq(0);
+
+            /* DEBUT TITRE */
+                pageLeft.append(createDivContent('h2', 'Radio'));
+                $('h2').css({
+                    'text-align':'center'
+                });
+            /* FIN TITRE */
             
+            /* DEBUT RADIO */
+            divUtil = createDivClass('div', 'border mt-5');
+            divUtil.setAttribute('id', 'radio');
+            pageLeft.append(divUtil);
+
+            $('#radio').css({
+                height : '240px',
+            });
+
             
+            /* FIN RADIO */
+
+            /* DEBUT RADION-SCREEN */
+                divUtil = createDivClass('div', 'border w-75 mx-auto mt-3');
+                divUtil.setAttribute('id', 'radio-screen');
+                $('#radio').append(divUtil);
+                $('#radio-screen').css({
+                    'position':'relative',
+                    height : '120px',
+                    'text-align':'center',
+                });
+
+                /* DEBUT TEXT RADIO-SCREEN */
+                    $('#radio-screen').append(createDivContent('p', 'MHz :'));
+                    $('#radio-screen p').append(createDivContent('span', ' 108.00'));
+                    $('#radio-screen p').css({
+                        'position': 'absolute',
+                        'left': '50%',
+                        'top': '50%',
+                        'transform': 'translate(-50%, -50%)',
+                    })
+                /* FIN TEXT RADIO-SCREEN */
+
+            /* FIN RADION-SCREEN */
+
+            /* */
+            divUtil = createDivClass('div', 'container');
+            $('#radio').append(divUtil);
+            divUtil = createDivClass('div', 'row d-flex justify-content-around pt-3');
+            $('#radio .container').append(divUtil);
+            divUtil = createDivClass('div', 'rounded-circle border btn');
+            $('#radio .row').append(divUtil);
+            divUtil = createDivClass('div', 'rounded-circle border btn');
+            $('#radio .row').append(divUtil);
+            $('.btn').css({
+                height : '48px',
+                width : '48px',
+            })
+            /* */
 
         /* FIN init PAGE LEFT */
 
         /* DEBUT init PAGE RIGHT */
-            var pageRight = document.getElementsByClassName('col-6')[1];
+            var pageRight = $('.col-6').eq(1);
             
         /* FIN init PAGE RIGHT */
     }
 /* FIN 2eme PAGE */
-
-pageTwo();
+pageOne();
 
