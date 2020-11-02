@@ -50,7 +50,7 @@ document.body.appendChild(livre);
             var pageLeft = document.getElementsByClassName('col-6')[0];
             
             pageLeft.appendChild(createDivContent('h2', 'Bienvenu voyageur'));
-            divUtil = createDivContent('p', 'Serriez-vous à la hauteur ?')
+            divUtil = createDivContent('p', 'Serrez-vous à la hauteur ?')
             pageLeft.appendChild(divUtil);
             divUtil = createDivClass('p', 'position-absolute bot right m-0');
             divUtil.textContent = 'page 1';
@@ -260,20 +260,26 @@ document.body.appendChild(livre);
 
             /* FIN RADION-SCREEN */
 
-            /* */
-            divUtil = createDivClass('div', 'container');
-            $('#radio').append(divUtil);
-            divUtil = createDivClass('div', 'row d-flex justify-content-around pt-3');
-            $('#radio .container').append(divUtil);
-            divUtil = createDivClass('div', 'rounded-circle border btn');
-            $('#radio .row').append(divUtil);
-            divUtil = createDivClass('div', 'rounded-circle border btn');
-            $('#radio .row').append(divUtil);
-            $('.btn').css({
-                height : '48px',
-                width : '48px',
-            })
-            /* */
+            /* DEBUT BUTTON RADIO*/
+                divUtil = createDivClass('div', 'container');
+                $('#radio').append(divUtil);
+                divUtil = createDivClass('div', 'row d-flex justify-content-around pt-3');
+                $('#radio .container').append(divUtil);
+
+                /* DEBUT BTN RADIO LEFT */
+                    divUtil = createDivClass('div', 'rounded-circle border btn');
+                    $('#radio .row').append(divUtil);
+                /* FIN BTN RADIO LEFT */
+
+                /* DEBUT BTN RADIO RIGHT */
+                    divUtil = createDivClass('div', 'rounded-circle border btn');
+                    $('#radio .row').append(divUtil);
+                /* FIN BTN RADIO RIGHT */
+                $('.btn').css({
+                    height : '48px',
+                    width : '48px',
+                });
+            /* FIN BUTTON RADIO */
 
         /* FIN init PAGE LEFT */
 
@@ -283,5 +289,6 @@ document.body.appendChild(livre);
         /* FIN init PAGE RIGHT */
     }
 /* FIN 2eme PAGE */
+
 pageOne();
 
