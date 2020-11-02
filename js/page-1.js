@@ -209,29 +209,16 @@ function createDivContent(name, content){
         /* DEBUT init PAGE LEFT */
             var pageLeft = document.getElementsByClassName('col-6')[0];
             
-            pageLeft.appendChild(createDivContent('h2', 'Bienvenu voyageur'));
-            divUtil = createDivContent('p', 'Serriez-vous à la hauteur ?')
-            pageLeft.appendChild(divUtil);
-            divUtil = createDivClass('p', 'position-absolute bot right m-0');
-            divUtil.textContent = 'page 3';
-            pageLeft.appendChild(divUtil);
+            
 
         /* FIN init PAGE LEFT */
 
         /* DEBUT init PAGE RIGHT */
             var pageRight = document.getElementsByClassName('col-6')[1];
-            pageRight.appendChild(createDivClass('div', 'container h-100 position-relative'));
-            pageRight.getElementsByClassName('container')[0].appendChild(createDivClass('div', 'row text-center w-100 h-75 position-absolute top-10'));
-
-            /* DEBUT TITRE */
-                divUtil = createDivContent('h3', 'Trouvez le code');
-                divUtil.style.width = '100%';
-                pageRight.getElementsByClassName('row')[0].appendChild(divUtil);
-            /* FIN TITRE */
-
+            
         /* FIN init PAGE RIGHT */
     }
 /* FIN 2eme PAGE */
 
-pageOne();
+pageTwo();
 
