@@ -269,12 +269,48 @@ document.body.appendChild(livre);
                 /* DEBUT BTN RADIO LEFT */
                     divUtil = createDivClass('div', 'rounded-circle border btn');
                     $('#radio .row').append(divUtil);
+                    var vefirBtnLef = false
+                    $(divUtil).mousedown(function(){
+                        vefirBtnLef = true;
+                    }).bind('mouseup mouseover mouseout', function(){
+                            vefirBtnLef = false;
+                    });
+
+                    $(divUtil).mousemove(function(event){
+                        if( vefirBtnLef === true){
+
+                            
+                            $(this).text('<p>('  + event.pageX + ',' + event.pageY + ' )</p>');
+                        }
+                        else{
+                            vefirBtnLef = false;
+                        }
+                    });
+
+                    
                 /* FIN BTN RADIO LEFT */
 
                 /* DEBUT BTN RADIO RIGHT */
                     divUtil = createDivClass('div', 'rounded-circle border btn');
                     $('#radio .row').append(divUtil);
+                    $(divUtil).mousedown(function(){
+                        vefirBtnLef = true;
+                    }).bind('mouseup mouseover mouseout', function(){
+                            vefirBtnLef = false;
+                    });
+
+                    $(divUtil).mousemove(function(event){
+                        if( vefirBtnLef === true){
+
+
+                            $(this).text('<p>('  + event.pageX + ',' + event.pageY + ' )</p>');
+                        }
+                        else{
+                            vefirBtnLef = false;
+                        }
+                    });
                 /* FIN BTN RADIO RIGHT */
+                
                 $('.btn').css({
                     height : '48px',
                     width : '48px',
@@ -290,5 +326,5 @@ document.body.appendChild(livre);
     }
 /* FIN 2eme PAGE */
 
-pageOne();
+pageTwo();
 
