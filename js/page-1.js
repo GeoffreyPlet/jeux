@@ -441,10 +441,11 @@ document.body.appendChild(livre);
             for(var i = 0; i < $('.text-solution-radio span').length; i++){
                 $('.text-solution-radio span').eq(i).css({
                     opacity : 0,
-                    transition : '2s',
+                    transition : '5s',
                 })
             }
             
+
 
             
         /* FIN init PAGE RIGHT */
