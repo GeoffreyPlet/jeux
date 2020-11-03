@@ -23,6 +23,10 @@ function createDivContent(name, content){
 }
 /* FIN fonction creation de div avec content */
 
+var audioRadio = document.createElement('audio');
+audioRadio.setAttribute('src', 'img/radio.mp3');
+
+
 var livre = createDivClass('div', 'container border mt-5 livre');
 livre.style.height = '800px';
 document.body.appendChild(livre);
@@ -218,6 +222,10 @@ document.body.appendChild(livre);
         /* DEBUT init PAGE LEFT */
             var pageLeft = $('.col-6').eq(0);
 
+            divUtil = createDivClass('p', 'position-absolute bot right m-0');
+            divUtil.textContent = 'page 3';
+            pageLeft.append(divUtil);
+
             /* DEBUT TITRE */
                 pageLeft.append(createDivContent('h2', 'Radio'));
                 $('h2').css({
@@ -267,48 +275,135 @@ document.body.appendChild(livre);
                 $('#radio .container').append(divUtil);
 
                 /* DEBUT BTN RADIO LEFT */
-                    divUtil = createDivClass('div', 'rounded-circle border btn');
+                    divUtil = createDivClass('div', 'rounded-circle border btn position-relative');
                     $('#radio .row').append(divUtil);
                     var vefirBtnLef = false
-                    $(divUtil).mousedown(function(){
+                    var positionX;
+                    var degre = 0;
+                    $(divUtil).mousedown(function(event){
                         vefirBtnLef = true;
+                        positionX = event.pageX;
                     }).bind('mouseup mouseover mouseout', function(){
                             vefirBtnLef = false;
+                            positionX = 0;
                     });
 
                     $(divUtil).mousemove(function(event){
-                        if( vefirBtnLef === true){
 
-                            
-                            $(this).text('<p>('  + event.pageX + ',' + event.pageY + ' )</p>');
+                        if( vefirBtnLef === true && positionX != 0){
+
+                            if(event.pageX != positionX){
+                                degre = degre + 4;
+                                $('#radio-screen p span').eq(0).text(degre % 360);
+                                $('#btn-radio-left').css({
+                                    
+                                    'transform': 'rotate('+degre+'deg)',
+                                });
+                            }
                         }
                         else{
                             vefirBtnLef = false;
                         }
+                        if($('#radio-screen p span').eq(0).text() == '0'){
+                            $('#btn-valide-page-3').css({
+                                'background-color':'green',
+                            });
+                            audioRadio.pause();
+                            for(var i = 0; i < $('.text-solution-radio span').length; i++){
+                                $('.text-solution-radio span').eq(i).css({
+                                    opacity : 1,
+                                });
+                            }
+                        }
+                        else{
+                            $('#btn-valide-page-3').css({
+                                'background-color':'red',
+                            });
+                            audioRadio.play();
+                            for(var i = 0; i < $('.text-solution-radio span').length; i++){
+                                $('.text-solution-radio span').eq(i).css({
+                                    opacity : 0,
+                                });
+                            }
+                        }
                     });
 
+
+                    divUtil = createDivContent('p', '');
+                    divUtil.setAttribute('id', 'btn-radio-left');
+                    $('#radio .row .rounded-circle').append(divUtil);
+                    $(divUtil).css({
+                        'position':'absolute',
+                        'margin':'0',
+                        'left':'0px',
+                        'top':'23px',
+                        'border':'1px solid',
+                        'width':'100%',
+                    })
                     
                 /* FIN BTN RADIO LEFT */
 
                 /* DEBUT BTN RADIO RIGHT */
-                    divUtil = createDivClass('div', 'rounded-circle border btn');
+                    divUtil = createDivClass('div', 'position-relative rounded-circle border btn');
                     $('#radio .row').append(divUtil);
-                    $(divUtil).mousedown(function(){
+                    $(divUtil).mousedown(function(event){
                         vefirBtnLef = true;
+                        positionX = event.pageX;
                     }).bind('mouseup mouseover mouseout', function(){
                             vefirBtnLef = false;
+                            positionX = 0;
                     });
 
                     $(divUtil).mousemove(function(event){
-                        if( vefirBtnLef === true){
+                        if( vefirBtnLef === true && positionX != 0){
 
-
-                            $(this).text('<p>('  + event.pageX + ',' + event.pageY + ' )</p>');
+                            if(event.pageX != positionX){
+                                degre = degre - 4;
+                                document.getElementById('btn-radio-right').style.transform = 'rotate('+degre+'deg)';
+                                $('#radio-screen p span').eq(0).text(degre % 360);
+                            }
                         }
                         else{
                             vefirBtnLef = false;
                         }
+
+                        
+                        if($('#radio-screen p span').eq(0).text() == '0'){
+                            $('#btn-valide-page-3').css({
+                                'background-color':'green',
+                            });
+                            audioRadio.pause();
+                            for(var i = 0; i < $('.text-solution-radio span').length; i++){
+                                $('.text-solution-radio span').eq(i).css({
+                                    opacity : 1,
+                                });
+                            }
+                        }
+                        else{
+                            $('#btn-valide-page-3').css({
+                                'background-color':'red',
+                            });
+                            audioRadio.play();
+                            for(var i = 0; i < $('.text-solution-radio span').length; i++){
+                                $('.text-solution-radio span').eq(i).css({
+                                    opacity : 0,
+                                });
+                            }
+                            
+                        }
                     });
+
+                    divUtil = createDivContent('p', '');
+                    divUtil.setAttribute('id', 'btn-radio-right');
+                    $('#radio .row .rounded-circle').eq(1).append(divUtil);
+                    $(divUtil).css({
+                        'position':'absolute',
+                        'margin':'0',
+                        'left':'0px',
+                        'top':'23px',
+                        'border':'1px solid',
+                        'width':'100%',
+                    })
                 /* FIN BTN RADIO RIGHT */
                 
                 $('.btn').css({
@@ -317,14 +412,44 @@ document.body.appendChild(livre);
                 });
             /* FIN BUTTON RADIO */
 
+            divUtil = createDivClass('div', 'container border');
+            divUtil.setAttribute('id','btn-valide-page-3');
+            $(divUtil).css({
+                'height': '120px',
+                'margin-top': '10em',
+            });
+            pageLeft.append(divUtil);
+
+            
+
+
+
         /* FIN init PAGE LEFT */
 
         /* DEBUT init PAGE RIGHT */
             var pageRight = $('.col-6').eq(1);
+
+            divUtil = createDivClass('p', 'position-absolute bot right m-0');
+            divUtil.textContent = 'page 4';
+            pageRight.append(divUtil);
+
+            pageRight.addClass('d-flex flex-column justify-content-center')
+            divUtil = createDivClass('p', 'text-solution-radio text-center');
+            pageRight.append(divUtil);
+            $(divUtil).html('<span>Allo !!<br></span><span>On m\'entend !! <br></span><span>Je suis enfermer, je ne vois plus rien !! <br></span><span>Alllooooo !!!! <br></span><span>Je sais qu\'il y a quelqu\'un je vous entend !!!!! <br></span><span> Venez m\'aider !!!</span>');
+
+            for(var i = 0; i < $('.text-solution-radio span').length; i++){
+                $('.text-solution-radio span').eq(i).css({
+                    opacity : 0,
+                    transition : '2s',
+                })
+            }
+            
+
             
         /* FIN init PAGE RIGHT */
     }
 /* FIN 2eme PAGE */
 
-pageTwo();
+pageOne();
 
