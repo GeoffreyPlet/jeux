@@ -471,15 +471,15 @@ document.body.appendChild(livre);
 /* FIN 2eme PAGE */
 
 
-var compteurInitCouleur = 0;
-var intervalInitCouleur = 2000;
+
 
 /* DEBUT PAGE 3 */
 function pageTrois(){
         
         document.getElementsByClassName('livre')[0].innerHTML = '';
         
-        
+        var compteurInitCouleur = 0;
+    var intervalInitCouleur = 2000;
         var divUtil
         var livreRow = createDivClass('div', 'row h-100');
         var page = [createDivClass('div', 'col-6 h-100'), createDivClass('div', 'col-6 h-100 border-left')];
