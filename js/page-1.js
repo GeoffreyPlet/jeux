@@ -12,8 +12,13 @@
 }
 /* FIN fonction creation de div avec class */
 
-/* DEBUT fonction creation de div avec id */
-/* FIN fonction creation de div avec id */
+
+/* DEBUT fonction utile */
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+/* FIN fonction utile */
+
 
 /* DEBUT fonction creation de div avec content */
 function createDivContent(name, content){
@@ -314,6 +319,7 @@ document.body.appendChild(livre);
                                     opacity : 1,
                                 });
                             }
+                            $('button').show();
                         }
                         else{
                             $('#btn-valide-page-3').css({
@@ -325,6 +331,7 @@ document.body.appendChild(livre);
                                     opacity : 0,
                                 });
                             }
+                            $('button').hide();
                         }
                     });
 
@@ -378,6 +385,7 @@ document.body.appendChild(livre);
                                     opacity : 1,
                                 });
                             }
+                            $('button').show();
                         }
                         else{
                             $('#btn-valide-page-3').css({
@@ -389,6 +397,7 @@ document.body.appendChild(livre);
                                     opacity : 0,
                                 });
                             }
+                            $('button').hide();
                             
                         }
                     });
@@ -444,6 +453,15 @@ document.body.appendChild(livre);
                     transition : '5s',
                 })
             }
+
+            divUtil = createDivClass('button', 'btn');
+            $(divUtil).html('Validé');
+            $(divUtil).hide();
+            pageRight.append(divUtil);
+
+            $(divUtil).click(function(){
+                pageTrois();
+            })
             
 
 
@@ -452,5 +470,180 @@ document.body.appendChild(livre);
     }
 /* FIN 2eme PAGE */
 
-pageOne();
 
+var compteurInitCouleur = 0;
+var intervalInitCouleur = 2000;
+
+/* DEBUT PAGE 3 */
+function pageTrois(){
+        
+        document.getElementsByClassName('livre')[0].innerHTML = '';
+        
+        
+        var divUtil
+        var livreRow = createDivClass('div', 'row h-100');
+        var page = [createDivClass('div', 'col-6 h-100'), createDivClass('div', 'col-6 h-100 border-left')];
+
+
+        /* DEBUT FONCTION FLECHE */
+            $(document).keydown(function(event){
+                
+                if(event.key == 'ArrowLeft'){
+                    $('#col-0-row-4-grill').css({
+                        'backgroundColor' : 'red',
+                    });
+                }
+                if(event.key == 'ArrowUp'){
+                    $('#col-1-row-4-grill').css({
+                        'backgroundColor' : 'blue',
+                    });
+                }
+                if(event.key == 'ArrowRight'){
+                    $('#col-2-row-4-grill').css({
+                        'backgroundColor' : 'orange',
+                    });
+                }
+                if(event.key == 'ArrowDown'){
+                    $('#col-3-row-4-grill').css({
+                        'backgroundColor' : 'green',
+                    });
+                }
+            }).bind('keyup', function(event){
+                if(event.key == 'ArrowLeft'){
+                    $('#col-0-row-4-grill').css({
+                        'backgroundColor' : 'white',
+                    });
+                }
+                if(event.key == 'ArrowUp'){
+                    $('#col-1-row-4-grill').css({
+                        'backgroundColor' : 'white',
+                    });
+                }
+                if(event.key == 'ArrowRight'){
+                    $('#col-2-row-4-grill').css({
+                        'backgroundColor' : 'white',
+                    });
+                }
+                if(event.key == 'ArrowDown'){
+                    $('#col-3-row-4-grill').css({
+                        'backgroundColor' : 'white',
+                    });
+                }
+            });
+        /* DEBUT FONCTION FLECHE */
+
+        /* DEBUT init LIVRE */
+            livre.style.height = '800px';
+
+            $('.container').append(livreRow);
+            $('.row').append(page);
+            
+        /* FIN init LIVRE */
+
+        /* DEBUT init PAGE LEFT */
+            var pageLeft = $('.col-6').eq(0);
+
+            /* DEBUT INFO PAGE */
+                divUtil = createDivClass('p', 'position-absolute bot right m-0');
+                divUtil.textContent = 'page 5';
+                pageLeft.append(divUtil);
+            /* DEBUT INFO PAGE */
+
+            /* DEBUT GRILL */
+                divUtil = createDivClass('div', 'position-relative');
+                $(divUtil).attr('id', 'grill');
+                pageLeft.append(divUtil);
+
+                /* DEBUT ROW GRILL */
+                    for( var i = 0; i < 5; i++){
+                        divUtil = createDivClass('div','row');
+                        $(divUtil).attr('id','row-grill-'+i);
+                        $('#grill').append(divUtil);
+                        for( var j = 0; j < 4; j++){
+                            divUtil = createDivClass('div','col border');
+                            $(divUtil).css({
+                                height : '120px',
+                            });
+                            $(divUtil).attr('id','col-'+j+'-row-'+i+'-grill');
+                            $('#row-grill-'+i).append(divUtil);
+                        }
+                    }
+                /* FIN ROW GRILL */
+            /* FIN GRILL */
+
+            /* DEBUT TABLEAU DE VIE */
+                divUtil = createDivClass('div', 'container border');
+                pageLeft.append(divUtil);
+                $(divUtil).css({
+                    height:'120px',
+                    'margin-top':'24px',
+                });
+            /* FIN TABLEAU DE VIE */
+
+            /* DEBUT LVL 1 */
+                var setLvl = 4;
+            /* FIN LVL 1 */
+
+            /* DEBUT INTERVAL SET COULEUR */
+                var setCouleur = setInterval(function(){
+                var random = getRandomInt(4);
+
+                divUtil = createDivClass('div','position-absolute');
+                $('#col-'+random+'-row-0-grill').append(divUtil);
+
+                switch(random){
+                    case 0:
+                        $(divUtil).css({
+                            height:'120px',
+                            width: '100%',
+                            left:0,
+                            'background-color':'red',
+                        });
+                        break;
+                    case 1:
+                        $(divUtil).css({
+                            height:'120px',
+                            width: '100%',
+                            left:0,
+                            'background-color':'blue',
+                        });
+                        break;
+                    case 2:
+                        $(divUtil).css({
+                            height:'120px',
+                            width: '100%',
+                            left:0,
+                            'background-color':'orange',
+                        });
+                        break;
+                    case 3:
+                        $(divUtil).css({
+                            height:'120px',
+                            width: '100%',
+                            left:0,
+                            'background-color':'green',
+                        });
+                        break;
+                }
+                compteurInitCouleur ++;
+                if(compteurInitCouleur === setLvl){
+                    clearTimeout(setCouleur);
+                }
+                
+            }, intervalInitCouleur);
+            /* FIN INTERVAL SET COULEUR */
+        /* FIN init PAGE LEFT */
+
+        /* DEBUT init PAGE RIGHT */
+            var pageRight = $('.col-6').eq(1);
+
+            /* DEBUT INFO PAGE */
+                divUtil = createDivClass('p', 'position-absolute bot right m-0');
+                divUtil.textContent = 'page 6';
+                pageRight.append(divUtil);
+            /* DEBUT INFO PAGE */
+        /* FIN init PAGE RIGHT */
+    }
+    /* FIN PAGE 3 */
+
+    pageTrois();
