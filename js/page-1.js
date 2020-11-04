@@ -760,4 +760,4 @@ function pageTrois(){
     }
     /* FIN PAGE 3 */
 
-    pageTrois();
+    pageOne();
