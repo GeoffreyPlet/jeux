@@ -195,10 +195,14 @@ document.body.appendChild(livre);
                             check = false;
                         }
                     }
-                    if(check === true){
-                        pageTwo();
-                    }
+           
+                if((solution.join() == next.join())){
+                   
+                    pageTwo();
+                }
+                    
                 });
+                
             /* FIN ENQUETE */
             
         /* FIN init PAGE RIGHT */
