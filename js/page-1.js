@@ -44,7 +44,7 @@ document.body.appendChild(livre);
 
         var divUtil
         var livreRow = createDivClass('div', 'row h-100');
-        var page = [createDivClass('div', 'col-6 h-100 d-flex flex-column justify-content-center text-center'), createDivClass('div', 'col-6 h-100 border-left')];
+        var page = [createDivClass('div', 'col-6 h-100'), createDivClass('div', 'col-6 h-100 border-left')];
 
         /* DEBUT init LIVRE */
      
@@ -57,10 +57,34 @@ document.body.appendChild(livre);
 
         /* DEBUT init PAGE LEFT */
             var pageLeft = document.getElementsByClassName('col-6')[0];
+
+            $(pageLeft).css({
+               
+            })
             
-            pageLeft.appendChild(createDivContent('h2', 'Bienvenu voyageur'));
-            divUtil = createDivContent('p', 'Serrez-vous à la hauteur ?')
+            pageLeft.appendChild(createDivContent('h2', 'Bienvenue dans une page réalisé seulement en Javascript'));
+           
+            divUtil = createDivContent('p', 'Réaliser par Geoffrey Plet')
+            $(divUtil).css({
+                margin:0,
+                'font-size':'10px',
+            });
             pageLeft.appendChild(divUtil);
+
+            divUtil = createDivContent('p', 'Vous serrez ammené à trouver les solution des pages')
+            $(divUtil).css({
+                margin:0,
+                'font-size':'10px',
+            });
+            pageLeft.appendChild(divUtil);
+
+            divUtil = createDivContent('p', 'Cliqué essayer les touches du clavier tout est possible !!')
+            $(divUtil).css({
+                margin:0,
+                'font-size':'10px',
+            });
+            pageLeft.appendChild(divUtil);
+
             divUtil = createDivClass('p', 'position-absolute bot right m-0');
             divUtil.textContent = 'page 1';
             pageLeft.appendChild(divUtil);
@@ -478,7 +502,7 @@ document.body.appendChild(livre);
 
 
 /* DEBUT PAGE 3 */
-function pageTrois(){
+    function pageTrois(){
         
         document.getElementsByClassName('livre')[0].innerHTML = '';
         
@@ -529,7 +553,7 @@ function pageTrois(){
                     /* FIN VALIDE POINT */
 
                     /* NEXT LVL 1 */
-                    if(point == 4){
+                    if(point == 15){
                         
                         $('#btn-next-lvl-1').show();
                     }
@@ -552,7 +576,7 @@ function pageTrois(){
                     }
 
                     /* NEXT LVL 1 */
-                    if(point == 4){
+                    if(point == 15){
                         
                         $('#btn-next-lvl-1').show();
                     }
@@ -575,7 +599,7 @@ function pageTrois(){
                     }
 
                     /* NEXT LVL 1 */
-                    if(point == 4){
+                    if(point == 15){
                         
                         $('#btn-next-lvl-1').show();
                     }
@@ -599,7 +623,7 @@ function pageTrois(){
                     }
 
                     /* NEXT LVL 1 */
-                    if(point == 4){
+                    if(point == 15){
                         
                         $('#btn-next-lvl-1').show();
                     }
@@ -662,8 +686,8 @@ function pageTrois(){
 
             /* DEBUT LVL 1 */
                 var compteurInitCouleur = 0;
-                var intervalInitCouleur = 2000;
-                var setLvl = 4;
+                var intervalInitCouleur = 1000;
+                var setLvl = 30;
                 var lvlTransition = '0.9s';
             /* FIN LVL 1 */
 
@@ -726,8 +750,13 @@ function pageTrois(){
                     }
                     
                     for(var j = 0; j < $('#row-grill-0 .my-slide').length; j++){
-                        if($($('#row-grill-0 .my-slide')[j]).position().top > 360){
+                        if($($('#row-grill-0 .my-slide')[j]).position().top > 460){
                             vie--;
+                            /* DEBUT CONDITION LOSE */
+                                if(vie == 0){
+                                    pageTwo();
+                                }
+                            /* DEBUT CONDITION LOSE */
                             $($('#row-grill-0 .my-slide')[j]).remove();
                             clearTimeout(itervalItem);
                         }
@@ -759,9 +788,59 @@ function pageTrois(){
                 $(divUtil).html('Next lvl');
                 $(divUtil).hide();
                 pageRight.append(divUtil);
+
+                $(divUtil).click(function(){
+                    finChapitre();
+                });
             /* DEBUT INFO PAGE */
         /* FIN init PAGE RIGHT */
     }
-    /* FIN PAGE 3 */
+/* FIN PAGE 3 */
+
+/* DEBUT FIN CHAPITRE */
+    function finChapitre(){
+
+
+        document.getElementsByClassName('livre')[0].innerHTML = '';
+
+        var divUtil
+        var livreRow = createDivClass('div', 'row h-100');
+        var page = [createDivClass('div', 'col-6 h-100'), createDivClass('div', 'col-6 h-100 border-left')];
+
+
+
+        /* DEBUT init LIVRE */
+            livre.style.height = '800px';
+
+            $('.container').append(livreRow);
+            $('.row').append(page);
+            
+        /* FIN init LIVRE */
+
+        /* DEBUT init PAGE LEFT */
+            var pageLeft = $('.col-6').eq(0);
+            divUtil = createDivClass('p', 'text-center');
+
+            $(divUtil).text('MErci d\'avoir fini le 1er chapitre');
+
+            pageLeft.append(divUtil);
+
+        /* FIN init PAGE LEFT */
+
+        /* DEBUT init PAGE RIGHT */
+            var pageRight = $('.col-6').eq(1);
+            divUtil = createDivClass('p', 'text-center');
+
+            $(divUtil).text('Seulement réalisé en JavaScript');
+
+            pageRight.append(divUtil);
+
+        /* FIN init PAGE RIGHT */
+
+    }
+/* FIN FIN CHAPITRE */
+    
+
+    
 
     pageOne();
